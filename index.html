@@ -19,12 +19,15 @@
     <div class="app">
        <aside class="aside">
             <nav>
-                <a href="dashbord">Tableau de bord</a>           
-                <a href="chat">Chat</a> 
-                <a href="resume">Résumé de texte</a> 
-                <a href="classification">Classification</a> 
-                <a href="traduction">Traduction</a>
-                <a href="historique">Historique</a>  
+            <ul>
+                <li class="nav-item active" data-page="dashbord">Tableau de bord</li>           
+                <li class="nav-item" data-page="chat">Chat</li> 
+                <li class="nav-item" data-page="resume">Résumé de texte</li> 
+                <li class="nav-item" data-page="classification">Classification</li> 
+                <li class="nav-item" data-page="traduction">Traduction</li>
+                <li class="nav-item" data-page="historique">Historique</li>  
+            </ul>
+  
             </nav>
         </aside>
 
@@ -35,8 +38,9 @@
              <p>Bienvenue sur votre espace de travail intelligent</p>
             </section>
 
-            <section> 
-                <!--Zone des statistiques-->
+        <section> 
+            <div class="grid stats-grid">
+                    <!--Zone des statistiques-->
                 <div class="Statistiques">     
                     <p>Nombres de jeu de données </p>
                     <strong><b>24</b></strong>
@@ -66,100 +70,101 @@
                     <strong><b>24</b></strong>
                     <span class="bleu clair">+22% ce mois-ci</span>
                 </div>
+            </div>
+                
 
             <section>
-                <!--Zone des images-->
-            <div class="Diagramme">
+             <div class="graphs-row">
+                      <!--Zone des images-->
+                <div class="Diagramme">
                 <h3>Requêtes par jour</h3>
                 <img src="images/imageHTML1.png" alt="diagramme linéaire">
-            </div>
-            <div class="Diagramme par secteur">
+                 </div>
+               <div class="Diagramme par secteur">
                 <h4>Répartition des requêtes par service</h4>
                 <img src="images/imageHTML2.png" alt="Camembert">
-            </div>
+                </div>
+
+           </div>
+              
             </section>
            
-            <section>
-         <!--Zone des Tableaux-->   
-            <div class="tableau1">
-                <h6>Activité  récente</h6>
-                <table>
-                    <tr> 
-                      <th>Activité</th>
-                      <th>Service</th>
-                      <th>Utilisateur</th>
-                      <th>Date</th>
-                    </tr>
-                    <tr>
-                        <td>Résumé du document_projet.pdf</td>
-                        <td>Résumé de texte</td>
-                        <td>Admin User</td>
-                        <td>21/05/2024 14:32</td>
-                        <tr>
-                     </tr>
-                     <tr>
-                        <td>Classification de sentiments</td>
-                        <td>Classification</td>
-                        <td>Admin User</td>
-                        <td>21/05/2024 14:21</td>
-                     </tr>
-                     <tr>
-                        <td>Traduction FR - EN</td>
-                        <td>Traduction</td>
-                        <td>Admin User</td>
-                        <td>21/05/2024 14:15</td>
-                     </tr>
-                     <tr>
-                        <td>Discussion sur l'IA générative</td>
-                        <td>Chat</td>
-                        <td>Admin User</td>
-                        <td>21/05/2024 14:05</td>
-                     </tr>
-                     <tr>
-                        <td>Générations d'idées de projet</td>
-                        <td>Idées</td>
-                        <td>Admin User</td>
-                        <td>21/05/2024 14:32</td>
-                     </tr>
-                  <nav>
-                  
-                </table>
-                <a href="historique">Voir tout l'historique</a>
-            </div>
+        <section class="tableaux-row">
+    <!--Zone des Tableaux-->   
+    <div class="tableau1">
+        <h6>Activité  récente</h6>
+        <table>
+            <tr> 
+              <th>Activité</th>
+              <th>Service</th>
+              <th>Utilisateur</th>
+              <th>Date</th>
+            </tr>
+            <tr>
+                <td>Résumé du document_projet.pdf</td>
+                <td>Résumé de texte</td>
+                <td>Admin User</td>
+                <td>21/05/2024 14:32</td>
+            </tr>
+             <tr>
+                <td>Classification de sentiments</td>
+                <td>Classification</td>
+                <td>Admin User</td>
+                <td>21/05/2024 14:21</td>
+             </tr>
+             <tr>
+                <td>Traduction FR - EN</td>
+                <td>Traduction</td>
+                <td>Admin User</td>
+                <td>21/05/2024 14:15</td>
+             </tr>
+             <tr>
+                <td>Discussion sur l'IA générative</td>
+                <td>Chat</td>
+                <td>Admin User</td>
+                <td>21/05/2024 14:05</td>
+             </tr>
+             <tr>
+                <td>Générations d'idées de projet</td>
+                <td>Idées</td>
+                <td>Admin User</td>
+                <td>21/05/2024 14:32</td>
+             </tr>
+        </table>
+        <a href="#historique" class="voir-plus">Voir tout l'historique</a>
+    </div>
 
-                <div class="tableau2">
-                    <H6>Modèles populaires</H6>
-                    <table>
-                        <tr>
-                            <th>Modèle</th>
-                            <th>Utilisateurs</th>
-                        </tr>
-                        <tr>
-                            <td>mistral-7b-instruct</td>
-                            <td>532</td>
-                         </tr>
-                         <tr>
-                            <td>gpt-4-turbo</td>
-                            <td>389</td>
-                         </tr>
-                        <tr>
-                            <td>Ilama-3-8b</td>
-                            <td>256</td>
-                        </tr>
-                        
-                        <tr>
-                            <td>bert-base-uncased</td>
-                            <td>179</td>
-                        </tr>
-                        <tr>
-                            <td>google-translate-v1</td>
-                            <td>142</td>
-                        </tr>
-                        <nav>
-                 </table>
-                 <a href="modele">Modèles populaires</a>
-                </div>
-             </section>
+    <div class="tableau2">
+        <h6>Modèles populaires</h6>
+        <table>
+            <tr>
+                <th>Modèle</th>
+                <th>Utilisateurs</th>
+            </tr>
+            <tr>
+                <td>mistral-7b-instruct</td>
+                <td>532</td>
+             </tr>
+             <tr>
+                <td>gpt-4-turbo</td>
+                <td>389</td>
+             </tr>
+            <tr>
+                <td>llama-3-8b</td>
+                <td>256</td>
+            </tr>
+            <tr>
+                <td>bert-base-uncased</td>
+                <td>179</td>
+            </tr>
+            <tr>
+                <td>google-translate-v1</td>
+                <td>142</td>
+            </tr>
+        </table>
+        <a href="#modele" class="voir-plus">Modèles populaires</a>
+    </div>
+</section>
             
         </main>
     </div>
