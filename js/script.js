@@ -57,8 +57,62 @@ navItems.forEach(item => {
     const page = item.getAttribute('data-page');
 
     if (page === 'resume') {
-      renderResume();
-    }
+        renderResume();} 
+    else if
+        (page === 'traduction') {renderTraduction();}
     // les autres pages (chat, classification, traduction, historique...) seront ajoutées plus tard
   });
 });
+// PARTIE 4 - Traduction
+function renderTraduction() {
+  mainContent.innerHTML = `
+    <section class="page-header">
+      <h2>Traduction</h2>
+      <p>Traduisez votre texte dans la langue de votre choix</p>
+    </section>
+
+    <section class="traduction-section">
+      <div class="traduction-card">
+        <label for="texte-a-traduire">Texte à traduire</label>
+        <textarea id="texte-a-traduire" rows="8" placeholder="Écrivez ou collez votre texte ici..."></textarea>
+
+        <label for="langue-cible">Langue cible</label>
+        <select id="langue-cible">
+          <option value="en">Anglais</option>
+          <option value="es">Espagnol</option>
+          <option value="de">Allemand</option>
+          <option value="ar">Arabe</option>
+          <option value="it">Italien</option>
+        </select>
+
+        <button id="btn-traduire">Traduire</button>
+      </div>
+
+      <div class="traduction-card">
+        <label>Traduction générée</label>
+        <div id="traduction-resultat" class="resultat-box">
+          <p class="placeholder">La traduction s'affichera ici...</p>
+        </div>
+      </div>
+    </section>
+  `;
+
+  const btnTraduire = document.getElementById('btn-traduire');
+  const texteATraduire = document.getElementById('texte-a-traduire');
+  const langueCible = document.getElementById('langue-cible');
+  const traductionResultat = document.getElementById('traduction-resultat');
+
+  btnTraduire.addEventListener('click', () => {
+    const texte = texteATraduire.value.trim();
+    const langue = langueCible.options[langueCible.selectedIndex].text;
+
+    if (texte === '') {
+      traductionResultat.innerHTML = `<p class="placeholder">Veuillez saisir un texte avant de traduire.</p>`;
+      return;
+    }
+
+    // Simulation d'une traduction (à remplacer plus tard par un appel API)
+    const traductionSimulee = `[Traduction simulée en ${langue}] ${texte}`;
+    traductionResultat.innerHTML = `<p>${traductionSimulee}</p>`;
+  });
+}
