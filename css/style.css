@@ -378,3 +378,48 @@ main {
 .traduction-card button:hover {
   background-color: #4338ca;
 }
+/* PARTIE 6 - PRÉDICTION */
+.prediction-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.prediction-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prediction-card label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.prediction-card input {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.prediction-card button {
+  align-self: flex-start;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.prediction-card button:hover {
+  background-color: #4338ca;
+}
