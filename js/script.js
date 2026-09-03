@@ -47,7 +47,10 @@ function renderResume() {
     // Simulation d'un résumé (à remplacer plus tard par un appel API)
     const resumeSimule = texte.split(' ').slice(0, 15).join(' ') + '...';
     resumeResultat.innerHTML = `<p>${resumeSimule}</p>`;
+    // Enregistrement dans l'historique
+    enregistrerHistorique('Résumé d\'un texte', 'Résumé de texte');
   });
+
 }
 
 // Gestion de la navigation (clic sur les items du menu)
@@ -64,10 +67,13 @@ navItems.forEach(item => {
 
     else if (page === 'chat') {
       renderChat();}
-      
+
      else if (page === 'prediction') {
   renderPrediction();
 }
+    else if (page === 'historique') {
+      renderHistorique();
+    }
         
         // les autres pages (chat, classification, traduction, historique...) seront ajoutées plus tard
   ww});
@@ -124,7 +130,10 @@ function renderTraduction() {
     // Simulation d'une traduction (à remplacer plus tard par un appel API)
     const traductionSimulee = `[Traduction simulée en ${langue}] ${texte}`;
     traductionResultat.innerHTML = `<p>${traductionSimulee}</p>`;
-  });
+ // Enregistrement dans l'historique
+    enregistrerHistorique(`Traduction vers ${langue}`, 'Traduction');
+
+});
 }
 
 // PARTIE 5 - Chat IA
@@ -172,6 +181,9 @@ function renderChat() {
 
     chatInput.value = '';
 
+    // Enregistrement dans l'historique
+  enregistrerHistorique(`Discussion : "${message}"`, 'Chat');
+
     // Simulation d'une réponse IA (à remplacer plus tard par un appel API)
     setTimeout(() => {
       const messageIA = document.createElement('div');
@@ -182,6 +194,7 @@ function renderChat() {
     }, 500);
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
   }
 
   btnEnvoyer.addEventListener('click', envoyerMessage);
@@ -246,5 +259,109 @@ function renderPrediction() {
       <p><strong>Profil analysé :</strong> ${age} ans, ${revenu} FCFA, ${ville}</p>
       <p><strong>Résultat :</strong> ${resultatAleatoire}</p>
     `;
+    // Enregistrement dans l'historique
+    enregistrerHistorique(`Prédiction pour ${ville}`, 'Prédiction');
+  
+});
+}
+// PARTIE 7 - Historique
+
+// Enregistre une entrée dans le localStorage
+function enregistrerHistorique(activite, service) {
+  const historique = JSON.parse(localStorage.getItem('historique')) || [];
+
+  const nouvelleEntree = {
+    id: Date.now(),
+    activite: activite,
+    service: service,
+    utilisateur: 'Admin User',
+    date: new Date().toLocaleString('fr-FR')
+  };
+
+  historique.unshift(nouvelleEntree); // ajoute au début (plus récent en premier)
+  localStorage.setItem('historique', JSON.stringify(historique));
+}
+
+// Affiche la page Historique
+function renderHistorique() {
+  mainContent.innerHTML = `
+    <section class="page-header">
+      <h2>Historique</h2>
+      <p>Consultez, recherchez et gérez vos requêtes passées</p>
+    </section>
+
+    <section class="historique-section">
+      <div class="historique-toolbar">
+        <input type="text" id="recherche-historique" placeholder="Rechercher une activité, un service...">
+        <button id="btn-vider">Vider l'historique</button>
+      </div>
+
+      <div class="historique-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Activité</th>
+              <th>Service</th>
+              <th>Utilisateur</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="historique-body"></tbody>
+        </table>
+      </div>
+    </section>
+  `;
+
+  const rechercheInput = document.getElementById('recherche-historique');
+  const btnVider = document.getElementById('btn-vider');
+
+  afficherHistorique();
+
+  rechercheInput.addEventListener('input', () => {
+    afficherHistorique(rechercheInput.value.trim().toLowerCase());
+  });
+
+  btnVider.addEventListener('click', () => {
+    if (confirm('Voulez-vous vraiment vider tout l\'historique ?')) {
+      localStorage.removeItem('historique');
+      afficherHistorique();
+    }
+  });
+}
+
+// Affiche les lignes du tableau, avec filtre de recherche optionnel
+function afficherHistorique(filtre = '') {
+  const historiqueBody = document.getElementById('historique-body');
+  const historique = JSON.parse(localStorage.getItem('historique')) || [];
+
+  const historiqueFiltre = historique.filter(entree =>
+    entree.activite.toLowerCase().includes(filtre) ||
+    entree.service.toLowerCase().includes(filtre)
+  );
+
+  if (historiqueFiltre.length === 0) {
+    historiqueBody.innerHTML = `<tr><td colspan="5" class="placeholder">Aucune activité trouvée.</td></tr>`;
+    return;
+  }
+
+  historiqueBody.innerHTML = historiqueFiltre.map(entree => `
+    <tr>
+      <td>${entree.activite}</td>
+      <td>${entree.service}</td>
+      <td>${entree.utilisateur}</td>
+      <td>${entree.date}</td>
+      <td><button class="btn-supprimer" data-id="${entree.id}">Supprimer</button></td>
+    </tr>
+  `).join('');
+
+  // Gestion de la suppression individuelle
+  document.querySelectorAll('.btn-supprimer').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.getAttribute('data-id'));
+      const historiqueMisAJour = historique.filter(entree => entree.id !== id);
+      localStorage.setItem('historique', JSON.stringify(historiqueMisAJour));
+      afficherHistorique(filtre);
+    });
   });
 }

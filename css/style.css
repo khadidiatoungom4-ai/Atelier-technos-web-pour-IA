@@ -423,3 +423,89 @@ main {
 .prediction-card button:hover {
   background-color: #4338ca;
 }
+/* PARTIE 7 - HISTORIQUE */
+.historique-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.historique-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.historique-toolbar input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.historique-toolbar button {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.historique-toolbar button:hover {
+  background-color: #b91c1c;
+}
+
+.historique-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.historique-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historique-card th {
+  text-align: left;
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  padding: 10px 5px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.historique-card td {
+  font-size: 13px;
+  color: #374151;
+  padding: 12px 5px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.historique-card td.placeholder {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 30px 0;
+}
+
+.btn-supprimer {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-supprimer:hover {
+  background-color: #fecaca;
+}
